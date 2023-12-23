@@ -35,7 +35,7 @@ inputs:
     default: ''
 runs:
   using: 'docker'
-  image: 'docker://thetmaung/amplify-publish:amd64'
+  image: 'docker://thetmaung/amplify-publish:1.0.2'
   args:
     - ${{ inputs.project_dir }}
     - ${{ inputs.source_dir }}
