@@ -10,6 +10,10 @@ LABEL "homepage"="https://github.com/fairmartsg/amplify-publish.git"
 
 LABEL org.opencontainers.image.source=https://github.com/fairmartsg/amplify-publish
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
 RUN npm install --global --unsafe-perm @aws-amplify/cli@latest
 
 COPY entrypoint.sh /entrypoint.sh
