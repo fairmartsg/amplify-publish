@@ -14,7 +14,7 @@ inputs:
     default: 'dist'
   build_command: 
     description: 'a build command to run with amplify publish (to build front-end deployment artifacts)'
-    required: false
+    required:false
     default: 'npm run build'
   amplify_env:
     description: 'amplify environment to use'
@@ -35,7 +35,7 @@ inputs:
     default: ''
 runs:
   using: 'docker'
-  image: 'docker://thetmaung/amplify-publish:latest'
+  image: 'docker://thetmaung/amplify-publish:amd64'
   args:
     - ${{ inputs.project_dir }}
     - ${{ inputs.source_dir }}
