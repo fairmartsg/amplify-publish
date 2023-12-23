@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:16.17.0-bullseye-slim
 
 LABEL "com.github.actions.name"="GitHub action for deploying AWS Amplify project"
 LABEL "com.github.actions.description"="This action builds and deploys your AWS Amplify project"
