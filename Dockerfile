@@ -12,10 +12,5 @@ LABEL org.opencontainers.image.source=https://github.com/fairmartsg/amplify-publ
 
 RUN npm install --global --unsafe-perm @aws-amplify/cli@latest
 
-RUN pwd & ls
-
-RUN git config --global --add safe.directory /github/workspace
-
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-
