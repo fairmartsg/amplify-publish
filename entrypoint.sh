@@ -1,7 +1,6 @@
 #!/bin/bash -l
 
 sh -c "git config --global --add safe.directory $PWD"
-node -v
 
 set -e
 
@@ -47,6 +46,8 @@ fi
 which amplify
 echo "amplify version $(amplify --version)"
 
+echo "node version $(node --version)"
+
 case $5 in
 
   push)
@@ -54,8 +55,7 @@ case $5 in
     ;;
 
   publish)
-    amplify publish $9 --yes
-    git status
+    amplify publish $9 --yes && git status
     ;;
 
   status)
