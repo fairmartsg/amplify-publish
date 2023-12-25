@@ -33,6 +33,10 @@ inputs:
     description: 'additional arguments to pass to ampify_command defined command'
     required: false
     default: ''
+  node-version:
+    description: 'declare node version'
+    required: false
+    default: '16.17.0'
 runs:
   using: 'docker'
   image: 'docker://thetmaung/amplify-publish:1.0.8'
@@ -46,6 +50,7 @@ runs:
     - ${{ inputs.delete_lock }}
     - ${{ inputs.amplify_cli_version }}
     - ${{ inputs.amplify_arguments }}
+    - 'NODE_VERSION=${{ inputs.node-version }}'
 branding:
   icon: 'git-commit'
   color: 'orange'
