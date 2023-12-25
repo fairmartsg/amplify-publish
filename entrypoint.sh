@@ -1,6 +1,7 @@
 #!/bin/bash -l
 
 sh -c "git config --global --add safe.directory $PWD"
+node -v
 
 set -e
 
@@ -54,6 +55,7 @@ case $5 in
 
   publish)
     amplify publish $9 --yes
+    git status
     ;;
 
   status)
