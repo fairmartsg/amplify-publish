@@ -1,13 +1,6 @@
-# amplify-cli-action [NO LONGER MAINTAINED]
+# amplify-publish
 
-[![RELEASE](https://img.shields.io/github/v/release/ambientlight/amplify-cli-action?include_prereleases)](https://github.com/ambientlight/amplify-cli-action/releases)
-[![View Action](https://img.shields.io/badge/view-action-blue.svg?logo=github&color=orange)](https://github.com/marketplace/actions/amplify-cli-action)
-[![LICENSE](https://img.shields.io/github/license/ambientlight/amplify-cli-action)](https://github.com/ambientlight/amplify-cli-action/blob/master/LICENSE)
-[![ISSUES](https://img.shields.io/github/issues/ambientlight/amplify-cli-action)](https://github.com/ambientlight/amplify-cli-action/issues)
-
-No longer maintained. Feel free to send the PR to **README.md** and link folks to a maintained fork if such exist.  
-  
-🚀 :octocat: AWS Amplify CLI support for github actions. This action supports configuring and deploying your project to AWS as well as creating and undeploying amplify environments.
+Based on [amplify-publish-action](https://github.com/ambientlight/amplify-cli-action) repo
 
 ## Getting Started
 You can include the action in your workflow as `actions/amplify-cli-action@0.3.0`. Example (configuring amplify, building and deploying):
@@ -51,7 +44,7 @@ jobs:
         # npm run test
     
     - name: deploy
-      uses: ambientlight/amplify-cli-action@0.3.0
+      uses: fairmartsg/amplify-publish@1.0.10
       with:
         amplify_command: publish
         amplify_env: prod

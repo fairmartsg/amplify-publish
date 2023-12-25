@@ -1,8 +1,4 @@
-ARG NODE_VERSION=16.17.0
-
-FROM node:${NODE_VERSION}
-
-RUN echo ${NODE_VERSION}
+FROM node:16.17.0
 
 LABEL "com.github.actions.name"="GitHub action for deploying AWS Amplify project"
 LABEL "com.github.actions.description"="This action builds and deploys your AWS Amplify project"
