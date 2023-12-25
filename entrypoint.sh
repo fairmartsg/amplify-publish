@@ -55,7 +55,7 @@ case $5 in
     ;;
 
   publish)
-    amplify publish $9 --yes && git status && git add * && git commit -m 'apply amplify changes' && git push
+    amplify publish $9 --yes && git status && git add --all && git commit -m 'apply amplify changes' && git push
     ;;
 
   status)
