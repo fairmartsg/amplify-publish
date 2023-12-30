@@ -46,6 +46,8 @@ fi
 which amplify
 echo "amplify version $(amplify --version)"
 
+echo "node version $(node --version)"
+
 case $5 in
 
   push)
