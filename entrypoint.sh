@@ -46,11 +46,6 @@ fi
 which amplify
 echo "amplify version $(amplify --version)"
 
-which git
-echo "git version $(git --version)"
-
-git status
-
 echo "node version $(node --version)"
 
 case $5 in
@@ -65,6 +60,10 @@ case $5 in
 
   pull)
       amplify pull $9 --yes
+      git status
+      git stash push amplify/team-provider-info.json
+      git reset --hard HEAD
+      git stash apply
       ;;
 
   status)
