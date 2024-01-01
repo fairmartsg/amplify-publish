@@ -46,6 +46,11 @@ fi
 which amplify
 echo "amplify version $(amplify --version)"
 
+which git
+echo "git version $(git --version)"
+
+git status
+
 echo "node version $(node --version)"
 
 case $5 in
