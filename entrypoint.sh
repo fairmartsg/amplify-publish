@@ -77,18 +77,18 @@ case $5 in
       echo "found existing environment $6"
       #      amplify pull --appId $9 --envName $6 --yes
 
-      AWSCLOUDFORMATIONCONFIG="{\
-      \"configLevel\":\"project\",\
-      \"useProfile\":false,\
-      \"awsConfigFilePath\":\"$aws_config_file_path\"\
-      }"
-      AMPLIFY="{\
-      \"appId\":\"$9\",\
-      \"envName\":\"$6\"\
-      }"
-      PROVIDERS="{\
-      \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-      }"
+AWSCLOUDFORMATIONCONFIG="{\
+\"configLevel\":\"project\",\
+\"useProfile\":false,\
+\"awsConfigFilePath\":\"$aws_config_file_path\"\
+}"
+AMPLIFY="{\
+\"appId\":\"$9\",\
+\"envName\":\"$6\"\
+}"
+PROVIDERS="{\
+\"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+}"
 
       amplify pull --providers ${PROVIDERS} --amplify ${AMPLIFY} --yes
 
