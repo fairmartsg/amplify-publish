@@ -60,6 +60,7 @@ case $5 in
 
   pull)
       amplify pull $9 --yes
+      git config --global user.email "ci" && git config --global user.name "ci develop"
       git status
       git stash push amplify/team-provider-info.json
       git reset --hard HEAD
