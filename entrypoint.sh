@@ -80,7 +80,9 @@ case $5 in
 AWSCLOUDFORMATIONCONFIG="{\
 \"configLevel\":\"project\",\
 \"useProfile\":false,\
-\"awsConfigFilePath\":\"$aws_config_file_path\"\
+\"accessKeyId\":\"$AWS_ACCESS_KEY_ID\",\
+\"secretAccessKey\":\"$AWS_SECRET_ACCESS_KEY\",\
+\"region\":\"$AWS_REGION\"\
 }"
 AMPLIFY="{\
 \"appId\":\"$9\",\
