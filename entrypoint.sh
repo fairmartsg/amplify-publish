@@ -75,7 +75,23 @@ case $5 in
     # if environment doesn't exist fail explicitly
     if [ -z "$(amplify env get --name $6 | grep 'No environment found')" ] ; then
       echo "found existing environment $6"
-      amplify pull --appId $9 --envName $6 --yes
+      #      amplify pull --appId $9 --envName $6 --yes
+
+      AWSCLOUDFORMATIONCONFIG="{\
+      \"configLevel\":\"project\",\
+      \"useProfile\":false,\
+      \"awsConfigFilePath\":\"$aws_config_file_path\"\
+      }"
+      AMPLIFY="{\
+      \"appId\":\"$9\",\
+      \"envName\":\"$6\"\
+      }"
+      PROVIDERS="{\
+      \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+      }"
+
+      amplify pull --providers ${PROVIDERS} --amplify ${AMPLIFY} --yes
+
     else
       echo "$6 environment does not exist, consider using add_env command instead";
       exit 1
