@@ -60,19 +60,6 @@ case $5 in
 
   pull)
       amplify pull $9 --yes
-      git config --global user.email "ci" && git config --global user.name "ci develop"
-      git status
-      git stash push amplify/team-provider-info.json
-      git reset --hard HEAD
-      # Check if a stash exists
-      if git rev-parse --verify refs/stash >/dev/null 2>&1; then
-        # Stash exists, apply it
-        git stash apply
-        echo "Stash applied successfully!"
-      else
-        # Stash does not exist
-        echo "No stash found. Skipping apply."
-      fi
       ;;
 
   status)
