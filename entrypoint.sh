@@ -67,6 +67,17 @@ case $5 in
     ;;
 
   configure)
+      aws_config_file_path="$(pwd)/aws_config_file_path.json"
+      echo '{"accessKeyId":"'$AWS_ACCESS_KEY_ID'","secretAccessKey":"'$AWS_SECRET_ACCESS_KEY'","region":"'$AWS_REGION'"}' > $aws_config_file_path
+      echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"'$6'"}' > ./amplify/.config/local-env-info.json
+      echo '{"'$6'":{"configLevel":"project","useProfile":false,"awsConfigFilePath":"'$aws_config_file_path'"}}' > ./amplify/.config/local-aws-info.json
+
+      # if environment doesn't exist fail explicitly
+      if [ -z "$(amplify env get --name $6 | grep 'No environment found')" ] ; then
+        echo "found existing environment $6"
+        amplify env pull --yes $9
+
+  configureandpull)
     aws_config_file_path="$(pwd)/aws_config_file_path.json"
     echo '{"accessKeyId":"'$AWS_ACCESS_KEY_ID'","secretAccessKey":"'$AWS_SECRET_ACCESS_KEY'","region":"'$AWS_REGION'"}' > $aws_config_file_path
     echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"'$6'"}' > ./amplify/.config/local-env-info.json
