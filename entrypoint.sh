@@ -77,6 +77,14 @@ case $5 in
         echo "found existing environment $6"
         amplify env pull --yes $9
 
+      else
+        echo "$6 environment does not exist, consider using add_env command instead";
+        exit 1
+      fi
+
+      amplify status
+      ;;
+
   configureandpull)
     aws_config_file_path="$(pwd)/aws_config_file_path.json"
     echo '{"accessKeyId":"'$AWS_ACCESS_KEY_ID'","secretAccessKey":"'$AWS_SECRET_ACCESS_KEY'","region":"'$AWS_REGION'"}' > $aws_config_file_path
