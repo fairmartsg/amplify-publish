@@ -55,7 +55,7 @@ case $5 in
     ;;
 
   publish)
-    amplify publish $9 --yes
+    amplify publish $9 --yes; echo "Finished amplify publish"
     ;;
 
   pull)
