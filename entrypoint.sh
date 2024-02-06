@@ -1,7 +1,5 @@
 #!/bin/bash -l
 
-sh -c "git config --global --add safe.directory $PWD"
-
 set -e
 
 if [ -z "$AWS_ACCESS_KEY_ID" ] && [ -z "$AWS_SECRET_ACCESS_KEY" ] ; then
@@ -46,8 +44,6 @@ fi
 which amplify
 echo "amplify version $(amplify --version)"
 
-echo "node version $(node --version)"
-
 case $5 in
 
   push)
@@ -55,64 +51,25 @@ case $5 in
     ;;
 
   publish)
-    amplify publish $9 --yes; echo "Finished amplify publish"
+    amplify publish $9 --yes
     ;;
-
-  pull)
-      amplify pull $9 --yes
-      ;;
 
   status)
     amplify status $9
     ;;
 
   configure)
-      aws_config_file_path="$(pwd)/aws_config_file_path.json"
-      echo '{"accessKeyId":"'$AWS_ACCESS_KEY_ID'","secretAccessKey":"'$AWS_SECRET_ACCESS_KEY'","region":"'$AWS_REGION'"}' > $aws_config_file_path
-      echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"'$6'"}' > ./amplify/.config/local-env-info.json
-      echo '{"'$6'":{"configLevel":"project","useProfile":false,"awsConfigFilePath":"'$aws_config_file_path'"}}' > ./amplify/.config/local-aws-info.json
-
-      # if environment doesn't exist fail explicitly
-      if [ -z "$(amplify env get --name $6 | grep 'No environment found')" ] ; then
-        echo "found existing environment $6"
-        amplify env pull --yes $9
-
-      else
-        echo "$6 environment does not exist, consider using add_env command instead";
-        exit 1
-      fi
-
-      amplify status
-      ;;
-
-  configureandpull)
     aws_config_file_path="$(pwd)/aws_config_file_path.json"
     echo '{"accessKeyId":"'$AWS_ACCESS_KEY_ID'","secretAccessKey":"'$AWS_SECRET_ACCESS_KEY'","region":"'$AWS_REGION'"}' > $aws_config_file_path
     echo '{"projectPath": "'"$(pwd)"'","defaultEditor":"code","envName":"'$6'"}' > ./amplify/.config/local-env-info.json
     echo '{"'$6'":{"configLevel":"project","useProfile":false,"awsConfigFilePath":"'$aws_config_file_path'"}}' > ./amplify/.config/local-aws-info.json
 
+
+
     # if environment doesn't exist fail explicitly
     if [ -z "$(amplify env get --name $6 | grep 'No environment found')" ] ; then
       echo "found existing environment $6"
-      #      amplify pull --appId $9 --envName $6 --yes
-
-AWSCLOUDFORMATIONCONFIG="{\
-\"configLevel\":\"project\",\
-\"useProfile\":false,\
-\"accessKeyId\":\"$AWS_ACCESS_KEY_ID\",\
-\"secretAccessKey\":\"$AWS_SECRET_ACCESS_KEY\",\
-\"region\":\"$AWS_REGION\"\
-}"
-AMPLIFY="{\
-\"appId\":\"$9\",\
-\"envName\":\"$6\"\
-}"
-PROVIDERS="{\
-\"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-}"
-
-      amplify pull --providers ${PROVIDERS} --amplify ${AMPLIFY} --yes
-
+      amplify env pull --yes $9
     else
       echo "$6 environment does not exist, consider using add_env command instead";
       exit 1
