@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+sh -c "git config --global --add safe.directory $PWD"
+
 set -e
 
 if [ -z "$AWS_ACCESS_KEY_ID" ] && [ -z "$AWS_SECRET_ACCESS_KEY" ] ; then
