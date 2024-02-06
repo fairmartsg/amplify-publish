@@ -58,6 +58,10 @@ case $5 in
     amplify status $9
     ;;
 
+  pull)
+        amplify pull $9 --yes
+        ;;
+
   configure)
     aws_config_file_path="$(pwd)/aws_config_file_path.json"
     echo '{"accessKeyId":"'$AWS_ACCESS_KEY_ID'","secretAccessKey":"'$AWS_SECRET_ACCESS_KEY'","region":"'$AWS_REGION'"}' > $aws_config_file_path
